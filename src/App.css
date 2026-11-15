@@ -1,0 +1,246 @@
+.page {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+.backdrop {
+  position: fixed;
+  inset: -10%;
+  background-size: cover;
+  background-position: center;
+  filter: blur(60px) saturate(1.2);
+  opacity: 0.35;
+  pointer-events: none;
+}
+
+main {
+  position: relative;
+  max-width: 440px;
+  margin: 0 auto;
+  padding: 32px 16px 64px;
+}
+
+.artwork {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: 6px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5);
+}
+
+header {
+  margin-top: 28px;
+  text-align: center;
+}
+
+.artist {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  color: var(--muted);
+}
+
+h1 {
+  margin-top: 6px;
+  font-size: 26px;
+  font-weight: 700;
+  line-height: 1.2;
+  text-wrap: balance;
+}
+
+.subtitle {
+  margin-top: 4px;
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.player {
+  margin-top: 28px;
+}
+
+.now-playing {
+  display: flex;
+  gap: 10px;
+  align-items: baseline;
+  font-weight: 600;
+  min-height: 1.4em;
+}
+
+.now-playing .number {
+  color: var(--muted);
+}
+
+/* Progress bar */
+.progress {
+  --fill: 0%;
+  appearance: none;
+  display: block;
+  width: 100%;
+  height: 24px;
+  margin: 12px 0 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.progress::-webkit-slider-runnable-track {
+  height: 4px;
+  border-radius: 2px;
+  background: linear-gradient(to right, var(--text) var(--fill), var(--line) var(--fill));
+}
+
+.progress::-moz-range-track {
+  height: 4px;
+  border-radius: 2px;
+  background: linear-gradient(to right, var(--text) var(--fill), var(--line) var(--fill));
+}
+
+.progress::-webkit-slider-thumb {
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  margin-top: -5px;
+  border-radius: 50%;
+  background: var(--text);
+}
+
+.progress::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--text);
+}
+
+.times {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+  color: var(--muted);
+}
+
+/* Transport */
+.controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 32px;
+  margin-top: 12px;
+}
+
+.controls button {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+}
+
+.controls svg {
+  width: 26px;
+  height: 26px;
+  fill: currentColor;
+}
+
+.controls .play {
+  width: 68px;
+  height: 68px;
+  background: var(--text);
+  color: var(--bg);
+}
+
+.controls .play svg {
+  width: 30px;
+  height: 30px;
+}
+
+.controls button:active {
+  transform: scale(0.94);
+}
+
+/* Track list */
+.tracklist {
+  list-style: none;
+  margin: 36px 0 0;
+  padding: 0;
+  border-top: 1px solid var(--line);
+}
+
+.tracklist li {
+  border-bottom: 1px solid var(--line);
+}
+
+.tracklist button {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  padding: 14px 8px;
+  text-align: left;
+}
+
+.tracklist button:hover {
+  background: var(--hover);
+}
+
+.tracklist .number {
+  flex: none;
+  width: 22px;
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+  color: var(--muted);
+}
+
+.tracklist .active .title {
+  font-weight: 700;
+}
+
+button:focus-visible,
+.progress:focus-visible {
+  outline: 2px solid var(--text);
+  outline-offset: 2px;
+}
+
+/* Little animated bars on the playing track */
+.eq {
+  display: inline-flex;
+  gap: 2px;
+  align-items: flex-end;
+  height: 12px;
+}
+
+.eq i {
+  width: 3px;
+  height: 100%;
+  background: var(--text);
+  animation: eq 0.9s ease-in-out infinite alternate;
+}
+
+.eq i:nth-child(2) {
+  animation-delay: -0.3s;
+}
+
+.eq i:nth-child(3) {
+  animation-delay: -0.6s;
+}
+
+@keyframes eq {
+  from {
+    transform: scaleY(0.25);
+  }
+  to {
+    transform: scaleY(1);
+  }
+}
+
+.eq i {
+  transform-origin: bottom;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .eq i {
+    animation: none;
+  }
+}
